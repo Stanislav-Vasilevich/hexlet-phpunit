@@ -19,4 +19,16 @@
       $this->assertEquals('', reverseString(''));
       $this->assertEquals('olleh', reverseString('hello'));
     }
+    
+    public function testExtractLinks()
+    {
+      // HTML находится в файле withLinks.html в директории fixtures
+      // При чтении текстовых файлов, в конце может добавляться пустая строка
+      // Она удаляется с помощью метода `trim`, если нужно
+      // __DIR__ – директория, в которой находится данный файл с тестами
+      $html = file_get_contents(__DIR__ . "/../tests/fixtures/some.html");
+      // Теперь с HTML удобно работать и он не загромождает тесты.
+      $links = reverseString($html);
+      $this->assertEquals('golb.hcivelisav//:sptth', $links);
+    }
   }
